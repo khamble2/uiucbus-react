@@ -12,7 +12,7 @@ class SearchBar extends Component {
     }
     render() {
         return (
-            <div onClick={() => this.props.fetchSuggestions('test')}>
+            <div className="container-fluid">
                 <input onChange={this.onInputChange} placeholder="Search Here" />
             </div>
         );
@@ -25,7 +25,7 @@ class SearchBar extends Component {
 }
 
 function mapStateToProps({suggestions}) {
-    return {suggestions};
+    return { suggestions };
 }
 
 function mapDispatchToProps(dispatch) {
