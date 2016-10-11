@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSuggestions } from '../actions/index';
 
+
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
+import FontIcon from 'material-ui/FontIcon';
+
+
+
 class SearchBar extends Component {
     constructor(props) {
         super(props);
@@ -12,9 +19,17 @@ class SearchBar extends Component {
     }
     render() {
         return (
-            <div className="container-fluid">
-                <input onChange={this.onInputChange} placeholder="Search Here" />
-            </div>
+            <Card >
+            <CardText>
+                <FontIcon className="material-icons">search</FontIcon>
+            
+                <TextField
+                    hintText="Search Here" onChange={this.onInputChange}
+                />
+
+                <FontIcon className="material-icons">clear</FontIcon>
+                </CardText>
+            </Card>
         );
     }
 

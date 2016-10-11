@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
 class Suggestions extends Component {
     constructor(props) {
@@ -15,18 +16,28 @@ class Suggestions extends Component {
         });
     }
 
-    render() {
+    renderEmpty(){
+        return (
+            <CardText>
+                Your search did not match any stop.
+            </CardText>
+        );
+    }
+
+    renderContent(){
         if (this.props.suggestions) {
-            return (<div>
-                {this.renderList()}
-            </div>);
-        } else {
-            return (
-                <div>
-                    Your search did not match any stop.
-                </div>
-            );
+            return this.renderList();
+        }else{
+            return this.renderEmpty();
         }
+    }
+
+    render() {
+        return (
+            <Card>
+                {this.renderContent()}
+            </Card>
+        );
 
     }
 }
