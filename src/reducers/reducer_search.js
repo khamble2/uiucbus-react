@@ -1,14 +1,9 @@
-export default function () {
-    return [
-        {
-            "c": "MTD3121",
-            "i": "IT",
-            "n": "Illinois Terminal"
-        },
-        {
-            "c": "MTD0338",
-            "i": "ITMKT",
-            "n": "Illinois Terminal at Market St."
-        }
-    ]
+import { FETCH_SUGGESTIONS } from '../actions/index';
+
+export default function (state= null, action) {
+    switch (action.type){
+        case FETCH_SUGGESTIONS:
+            return action.payload.data;
+    }
+    return state;
 }

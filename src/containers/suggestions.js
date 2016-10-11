@@ -16,12 +16,18 @@ class Suggestions extends Component {
     }
 
     render() {
-        return (
-            <div>
-                Your search did not match any stop.
+        if (this.props.suggestions) {
+            return (<div>
                 {this.renderList()}
-            </div>
-        );
+            </div>);
+        } else {
+            return (
+                <div>
+                    Your search did not match any stop.
+                </div>
+            );
+        }
+
     }
 }
 

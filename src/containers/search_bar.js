@@ -24,10 +24,8 @@ class SearchBar extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        suggestions: state.suggestions
-    }
+function mapStateToProps({suggestions}) {
+    return {suggestions};
 }
 
 function mapDispatchToProps(dispatch) {

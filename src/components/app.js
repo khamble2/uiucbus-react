@@ -8,8 +8,6 @@ export default class App extends Component {
       <div>
         <SearchBar />
         <Suggestions />
-        <div>Hello World</div>
-
       </div>
     );
   }
