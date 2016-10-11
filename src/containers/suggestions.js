@@ -25,7 +25,7 @@ class Suggestions extends Component {
     }
 
     renderContent(){
-        if (this.props.suggestions) {
+        if (this.props.suggestions && this.props.suggestions.length != 0) {
             return this.renderList();
         }else{
             return this.renderEmpty();
@@ -35,6 +35,7 @@ class Suggestions extends Component {
     render() {
         return (
             <Card>
+                <CardTitle subtitle="Search Suggestions" />
                 {this.renderContent()}
             </Card>
         );
