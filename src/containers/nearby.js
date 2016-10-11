@@ -12,7 +12,9 @@ class Nearby extends Component {
         return (
             <Card>
                 <CardTitle subtitle="Nearby Stops" />
+                <CardText>
                 Hello
+                </CardText>
             </Card>
         );
 
