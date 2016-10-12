@@ -1,20 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { bindActionCreators } from 'redux';
+import { fetchNearby } from '../actions/index';
+
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
 class Nearby extends Component {
     constructor(props) {
         super(props);
+        let self = this; 
+        
+        this.state = { lon: "", lat: "" }
 
+        function initGeolocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => setPosition(position), null);
+            }
+        }
+
+        function setPosition(position) {
+            self.setState({ lon: position.coords.longitude, lat: position.coords.latitude })
+            self.props.fetchNearby(self.state.lon, self.state.lat)
+        }
+
+        initGeolocation();        
     }
+
+
+    renderList() {
+        return this.props.nearby.map((stop) => {
+            return (
+                <li key={stop.stop_id} className="list-group-item"> {stop.stop_name}</li>
+            )
+        });
+    }
+
+    renderEmpty(){
+        return (
+            <CardText>
+                Sorry we can not fetch your current location.
+            </CardText>
+        );
+    }
+
+    renderContent(){
+        if (this.props.nearby && this.props.nearby.length != 0) {
+            return this.renderList();
+        }else{
+            return this.renderEmpty();
+        }
+    }
+
 
     render() {
         return (
             <Card>
                 <CardTitle subtitle="Nearby Stops" />
-                <CardText>
-                Hello
-                </CardText>
+                    {this.renderContent()}
             </Card>
         );
 
@@ -24,8 +66,13 @@ class Nearby extends Component {
 
 function mapStateToProps(state) {
     return {
-        suggestions: state.suggestions
+        nearby: state.nearby
     };
 }
 
-export default connect(mapStateToProps)(Nearby);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ fetchNearby: fetchNearby }, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nearby);
