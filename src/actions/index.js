@@ -3,10 +3,12 @@ import axios from 'axios';
 
 export const FETCH_SUGGESTIONS = 'FETCH_SUGGESTION';
 export const FETCH_NEARBY = 'FETCH_NEARBY';
+export const FETCH_DEPARTURE = 'FETCH_DEPARTURE';
 
 const API_KEY = `532ed8c1dba447ed8ae0f69f3a438de1`;
 const QUERY_URL = `https://www.cumtd.com/autocomplete/stops/v1.0/json/search?query=`;
 const NEARBY_URL = `https://developer.cumtd.com/api/v2.2/json/GetStopsByLatLon?key=${API_KEY}`;
+const DEPARTURE_URL = `https://developer.cumtd.com/api/v2.2/json/GetDeparturesByStop?key=${API_KEY}`;
 
 
 export function fetchSuggestions(query) {
@@ -23,6 +25,15 @@ export function fetchNearby(lon, lat) {
     const request = axios.get(url);
     return {
         type: FETCH_NEARBY,
+        payload: request
+    }
+}
+
+export function fetchDepartures(stopId) {
+    const url = `${DEPARTURE_URL}&stop_id=${stopId}`;
+    const request = axios.get(url);
+    return {
+        type: FETCH_DEPARTURE,
         payload: request
     }
 }
