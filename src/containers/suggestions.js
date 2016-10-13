@@ -22,9 +22,7 @@ class Suggestions extends Component {
 
     renderEmpty(){
         return (
-            <List>
-                Your search did not match any stop.
-            </List>
+            <ListItem primaryText="Your search did not match any stops." />
         );
     }
 
