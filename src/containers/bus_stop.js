@@ -1,49 +1,49 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchDepartures } from '../actions';
-
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import { List, ListItem } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import ActionAssignment from 'material-ui/svg-icons/action/assignment';
-import { blue500, yellow600 } from 'material-ui/styles/colors';
-import ActionInfo from 'material-ui/svg-icons/action/info';
-import TextField from 'material-ui/TextField';
-import FontIcon from 'material-ui/FontIcon';
-
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {fetchDepartures} from '../actions';
+import { distanceAndBearing } from '../utilities';
+import {List, ListItem} from 'material-ui/List';
 
 
 class BusStop extends Component {
     constructor(props) {
         super(props);
-        this.state = {message:'Loading'}
+        this.state = {
+            message: 'Loading'
+        }
     }
 
     componentWillMount() {
         if (this.props.id) {
-            fetchDepartures(this.props.id).payload.then((data) => {
-                let nextDeparture = data.data.departures[0];
-                let message = `Next: ${nextDeparture.headsign} in ${nextDeparture.expected_mins} mins`;
-                this.setState({message:message})
-            }
-            );
+            fetchDepartures(this.props.id)
+                .payload
+                .then((data) => {
+                    let nextDeparture = data.data.departures[0];
+                    let message = `Next: ${nextDeparture.headsign} in ${nextDeparture.expected_mins} mins`;
+                    this.setState({message: message})
+                });
         }
     }
 
-    render() {
+    renderGeo() {
         return (
-
-            <ListItem
-                leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
-                rightIcon={<ActionInfo />}
-                primaryText={this.props.name}
-                secondaryText={this.state.message}
-                />
-
+            <div>Distance</div>
         );
     }
 
+    renderHeader() {
+        return <div className="row">
+            <div className="col-md-10">{this.props.name}</div>
+            <div className="col-md-2">{this.renderGeo()}</div>
+        </div>
+    }
+
+    render() {
+        return (<ListItem
+            primaryText={this.renderHeader()}
+            secondaryText={this.state.message}/>);
+    }
 
 }
 
