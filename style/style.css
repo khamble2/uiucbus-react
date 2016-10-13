@@ -1,3 +1,10 @@
-.card {
-    margin: 50px;
+span[type=button] {
+-webkit-appearance: none;
+}
+a[type=button] {
+-webkit-appearance: none;
+}
+
+.menuDrawer [type="button"] {
+-webkit-appearance:inherit;
 }
