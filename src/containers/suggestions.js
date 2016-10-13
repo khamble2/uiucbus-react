@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import BusStop from './bus_stop';
 
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {List, ListItem} from 'material-ui/List';
 
 class Suggestions extends Component {
     constructor(props) {
@@ -21,9 +22,9 @@ class Suggestions extends Component {
 
     renderEmpty(){
         return (
-            <CardText>
+            <List>
                 Your search did not match any stop.
-            </CardText>
+            </List>
         );
     }
 
