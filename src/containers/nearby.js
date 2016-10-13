@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchNearby } from '../actions/index';
+import BusStop from './bus_stop';
 
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
@@ -30,7 +31,7 @@ class Nearby extends Component {
     renderList() {
         return this.props.nearby.map((stop) => {
             return (
-                <li key={stop.stop_id} className="list-group-item"> {stop.stop_name}</li>
+                <BusStop key={stop.stop_id} name={stop.stop_name} id={stop.stop_id} />
             )
         });
     }

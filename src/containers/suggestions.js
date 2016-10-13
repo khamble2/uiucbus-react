@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import BusStop from './bus_stop';
+
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
 class Suggestions extends Component {
@@ -11,7 +13,8 @@ class Suggestions extends Component {
     renderList() {
         return this.props.suggestions.map((suggestion) => {
             return (
-                <li key={suggestion.i} className="list-group-item"> {suggestion.n}</li>
+                <BusStop key={suggestion.i} name={suggestion.n} id={suggestion.i}/>
+                // <li key={suggestion.i} className="list-group-item"> {suggestion.n}</li>
             )
         });
     }
