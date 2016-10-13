@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchDepartures} from '../actions';
+import {fetchDepartures, fetchLocation} from '../actions';
 import { distanceAndBearing } from '../utilities';
 import {List, ListItem} from 'material-ui/List';
 
@@ -12,6 +12,7 @@ class BusStop extends Component {
         this.state = {
             message: 'Loading'
         }
+        this.props.fetchLocation();
     }
 
     componentWillMount() {
@@ -42,7 +43,9 @@ class BusStop extends Component {
     render() {
         return (<ListItem
             primaryText={this.renderHeader()}
-            secondaryText={this.state.message}/>);
+            secondaryText={this.state.message}
+            />
+            );
     }
 
 }
@@ -52,12 +55,17 @@ BusStop.propTypes = {
     name: React.PropTypes.string
 };
 
-function mapStateToProps({}) {
-    return {};
+
+function mapStateToProps(state) {
+    console.log(state);
+    return {
+        position: state.position
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({}, dispatch)
+    return bindActionCreators({ fetchLocation: fetchLocation }, dispatch)
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(BusStop);
