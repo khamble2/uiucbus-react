@@ -23,13 +23,10 @@ class Nearby extends Component {
         }
         
         this.props.fetchPosition().then(() => {
-            this.props.fetchNearby(this.props.position.lat, this.props.position.lon);
+            // TODO: Past object instead of varaible 
+            this.props.fetchNearby(this.props.position.lon, this.props.position.lat);
         });
 
-    }
-
-    componentWillMount() {
-        // Resreverd
     }
 
     renderList() {
@@ -73,8 +70,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        fetchNearby: fetchNearby,
-        fetchPosition: fetchPosition
+        fetchNearby,
+        fetchPosition
     }, dispatch)
 }
 
