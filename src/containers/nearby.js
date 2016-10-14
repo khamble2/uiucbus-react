@@ -1,42 +1,47 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchNearby } from '../actions/index';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {fetchNearby, fetchPosition} from '../actions';
 import BusStop from './bus_stop';
 
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import {
+    Card,
+    CardActions,
+    CardHeader,
+    CardMedia,
+    CardTitle,
+    CardText
+} from 'material-ui/Card';
 
 class Nearby extends Component {
     constructor(props) {
         super(props);
-        let self = this; 
+
+        this.state = {
+            lon: "",
+            lat: ""
+        }
         
-        this.state = { lon: "", lat: "" }
+        this.props.fetchPosition().then(() => {
+            this.props.fetchNearby(this.props.position.lat, this.props.position.lon);
+        });
 
-        function initGeolocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => setPosition(position), null);
-            }
-        }
-
-        function setPosition(position) {
-            self.setState({ lon: position.coords.longitude, lat: position.coords.latitude })
-            self.props.fetchNearby(self.state.lon, self.state.lat)
-        }
-
-        initGeolocation();        
     }
 
+    componentWillMount() {
+        // Resreverd
+    }
 
     renderList() {
-        return this.props.nearby.map((stop) => {
-            return (
-                <BusStop key={stop.stop_id} name={stop.stop_name} id={stop.stop_id} />
-            )
-        });
+        return this
+            .props
+            .nearby
+            .map((stop) => {
+                return (<BusStop key={stop.stop_id} name={stop.stop_name} id={stop.stop_id}/>)
+            });
     }
 
-    renderEmpty(){
+    renderEmpty() {
         return (
             <CardText>
                 Sorry we can not fetch your current location.
@@ -44,36 +49,33 @@ class Nearby extends Component {
         );
     }
 
-    renderContent(){
+    renderContent() {
         if (this.props.nearby && this.props.nearby.length != 0) {
             return this.renderList();
-        }else{
+        } else {
             return this.renderEmpty();
         }
     }
 
-
     render() {
         return (
             <Card>
-                <CardTitle subtitle="Nearby Stops" />
-                    {this.renderContent()}
+                <CardTitle subtitle="Nearby Stops"/> {this.renderContent()}
             </Card>
         );
 
     }
 }
 
-
 function mapStateToProps(state) {
-    return {
-        nearby: state.nearby
-    };
+    return {nearby: state.nearby, position: state.position};
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchNearby: fetchNearby }, dispatch)
+    return bindActionCreators({
+        fetchNearby: fetchNearby,
+        fetchPosition: fetchPosition
+    }, dispatch)
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nearby);
