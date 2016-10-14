@@ -19,8 +19,6 @@ class Stop extends Component {
             <div> Stop Name and Upcoming </div>
         );
     }
-
-
 }
 
 Stop.propTypes = {

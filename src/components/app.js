@@ -6,6 +6,7 @@ import Suggestions from '../containers/suggestions';
 import Nearby from '../containers/nearby';
 import BusStop from '../containers/bus_stop';
 import Timer from '../containers/timer';
+import Departures from '../containers/departures';
 
 injectTapEventPlugin();
 
@@ -18,6 +19,8 @@ export default class App extends Component {
           <Timer />
           <Suggestions />
           <Nearby />
+          <Departures />
+
         </div>
       </MuiThemeProvider>
     );

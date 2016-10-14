@@ -5,7 +5,7 @@ import BusStop from './bus_stop';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 
-class Suggestions extends Component {
+class Departures extends Component {
     constructor(props) {
         super(props);
 
@@ -15,13 +15,14 @@ class Suggestions extends Component {
         return this.props.suggestions.map((suggestion) => {
             return (
                 <BusStop key={suggestion.i} name={suggestion.n} id={suggestion.i}/>
+                // <li key={suggestion.i} className="list-group-item"> {suggestion.n}</li>
             )
         });
     }
 
     renderEmpty(){
         return (
-            <ListItem primaryText="Your search did not match any stops." />
+            <ListItem primaryText="Sorry there are no upcoming bus." />
         );
     }
 
@@ -36,7 +37,7 @@ class Suggestions extends Component {
     render() {
         return (
             <Card>
-                <CardTitle subtitle="Search Suggestions" />
+                <CardTitle subtitle="Illini Union" />
                 {this.renderContent()}
             </Card>
         );
@@ -51,4 +52,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Suggestions);
+export default connect(mapStateToProps)(Departures);
