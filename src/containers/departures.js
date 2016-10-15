@@ -1,55 +1,74 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import BusStop from './bus_stop';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import DepartureItem from './Departure_item';
+import {fetchDepartures} from '../actions';
 
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {
+    Card,
+    CardActions,
+    CardHeader,
+    CardMedia,
+    CardTitle,
+    CardText
+} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 
 class Departures extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            departures: []
+        }
+    }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.activeStop && nextProps.activeStop.stopId != this.props.activeStop.stopId) {
+            fetchDepartures(this.props.activeStop.stopId)
+                .payload
+                .then((data) => {
+                    this.setState({departures: data.data.departures});
+                });
+        }
     }
 
     renderList() {
-        return this.props.suggestions.map((suggestion) => {
-            return (
-                <BusStop key={suggestion.i} name={suggestion.n} id={suggestion.i}/>
-                // <li key={suggestion.i} className="list-group-item"> {suggestion.n}</li>
-            )
-        });
+        return this
+            .state
+            .departures
+            .map((departure) => {
+                return (<DepartureItem key={departure.trip.trip_id} bus={departure}/>);
+            });
     }
 
-    renderEmpty(){
-        return (
-            <ListItem primaryText="Sorry there are no upcoming bus." />
-        );
+    renderEmpty() {
+        return (<ListItem primaryText="Sorry there are no upcoming bus."/>);
     }
 
-    renderContent(){
-        if (this.props.suggestions && this.props.suggestions.length != 0) {
+    renderContent() {
+        if (this.state.departures && this.state.departures.length != 0) {
             return this.renderList();
-        }else{
+        } else {
             return this.renderEmpty();
         }
     }
 
     render() {
+        if (!this.props.activeStop) {
+            return (
+                <Card></Card>
+            );
+        }
         return (
             <Card>
-                <CardTitle subtitle="Illini Union" />
-                {this.renderContent()}
+                <CardTitle subtitle={this.props.activeStop.stopName}/> {this.renderContent()}
             </Card>
         );
 
     }
 }
 
-
 function mapStateToProps(state) {
-    return {
-        suggestions: state.suggestions
-    };
+    return {suggestions: state.suggestions, activeStop: state.activeStop};
 }
 
 export default connect(mapStateToProps)(Departures);

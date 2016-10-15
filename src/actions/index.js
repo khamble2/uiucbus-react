@@ -1,4 +1,3 @@
-// import { fetchSuggestions } from './fetch_suggestions';
 import axios from 'axios';
 
 export const FETCH_SUGGESTIONS = 'FETCH_SUGGESTION';
@@ -50,4 +49,10 @@ export function fetchStop(stopId) {
     const url = `${STOP_URL}&stop_id=${stopId}`;
     const request = axios.get(url);
     return {type: FETCH_STOP, payload: request}
+}
+
+
+export function setActiveStop(stopName, stopId) {
+    let stop = {stopName, stopId};
+    return {type: SET_ACTIVE_STOP, payload:stop};
 }
