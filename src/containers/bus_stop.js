@@ -24,22 +24,20 @@ class BusStop extends Component {
                 message = `Next: ${nextDeparture.headsign} in ${nextDeparture.expected_mins} mins`;
             };
             this.setState({message: message})
+        }).then(
+
+        );
+
+        fetchStop(this.props.id).payload.then((data) => {
+            let stopPostition = {
+                lat: data.data.stops[0].stop_points[0].stop_lat,
+                lon: data.data.stops[0].stop_points[0].stop_lon
+            };
+            this.setState({stopPostition: stopPostition});
+            let headingMessage = distanceAndBearing(this.props.position.lat, this.props.position.lon, stopPostition.lat, stopPostition.lon);
+            this.setState({heading: headingMessage});
         });
     }
-
-                //         fetchStop(this.props.id)
-                // .payload
-                // .then((data) => {
-                //     let stopPostition = {
-                //         lat: data.data.stops[0].stop_points[0].stop_lat,
-                //         lon: data.data.stops[0].stop_points[0].stop_lon
-                //     };
-                //     this.setState({stopPostition: stopPostition});
-                // })
-                // .then(() => {
-                //     let headingMessage = distanceAndBearing(this.props.position.lat, this.props.position.lon, this.state.stopPostition.lat, this.state.stopPostition.lon);
-                //     this.setState({heading: headingMessage});
-                // });
 
     renderHeader() {
         return <div className="row">

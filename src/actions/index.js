@@ -6,6 +6,7 @@ export const FETCH_NEARBY = 'FETCH_NEARBY';
 export const FETCH_DEPARTURE = 'FETCH_DEPARTURE';
 export const FETCH_POSITION = 'FETCH_POSITION';
 export const FETCH_STOP = 'FETCH_STOP';
+export const SET_ACTIVE_STOP = 'SET_ACTIVE_STOP';
 
 const API_KEY = `532ed8c1dba447ed8ae0f69f3a438de1`;
 const BASE_URL = `https://developer.cumtd.com/api/v2.2/json/`
