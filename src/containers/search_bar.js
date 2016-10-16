@@ -47,11 +47,11 @@ class SearchBar extends Component {
         return (
             <Card >
                 <CardText>
-                    <div className="row">
-                        <div className="col-md-1">
+                    <div className="row vertical-center">
+                        <div className="col-xs-1">
                             <FontIcon className="material-icons">search</FontIcon>
                         </div>
-                        <div className="col-md-10">
+                        <div className="col-xs-10">
 
                             <TextField
                                 hintText="Search Here"
@@ -59,7 +59,7 @@ class SearchBar extends Component {
                                 onChange={this.onInputChange}
                                 value={this.state.query}/>
                         </div>
-                        <div className="col-md-1">
+                        <div className="col-xs-1">
                             <FontIcon className="material-icons" onClick={this.clearInput}>clear</FontIcon>
                         </div>
                     </div>

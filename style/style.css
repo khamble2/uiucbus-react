@@ -8,3 +8,8 @@ a[type=button] {
 .menuDrawer [type="button"] {
 -webkit-appearance:inherit;
 }
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
