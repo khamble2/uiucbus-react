@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchDepartures, fetchPosition, fetchStop, setActiveStop} from '../actions';
-import {distanceAndBearing} from '../utilities';
+import {fetchDepartures, fetchPosition, fetchStop, setActiveStop} from '../../actions';
+import {distanceAndBearing} from '../../utilities';
 import {List, ListItem} from 'material-ui/List';
 
 class DepartureItem extends Component {

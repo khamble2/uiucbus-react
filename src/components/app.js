@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SearchBar from '../containers/search_bar';
-import Suggestions from '../containers/suggestions';
-import Nearby from '../containers/nearby';
-import BusStop from '../containers/bus_stop';
+import Suggestions from '../containers/search_results/suggestions';
+import Nearby from '../containers/search_results/nearby';
 import Timer from '../containers/timer';
-import Departures from '../containers/departures';
+import Departures from '../containers/departures/departures';
 
 injectTapEventPlugin();
 
@@ -20,7 +19,6 @@ export default class App extends Component {
           <Suggestions />
           <Nearby />
           <Departures />
-
         </div>
       </MuiThemeProvider>
     );

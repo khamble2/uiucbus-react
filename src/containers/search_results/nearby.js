@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchNearby, fetchPosition} from '../actions';
+import {fetchNearby, fetchPosition} from '../../actions';
 import BusStop from './bus_stop';
 
 import {
