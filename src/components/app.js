@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SearchBar from '../containers/search_bar';
@@ -10,17 +10,26 @@ import Departures from '../containers/departures/departures';
 injectTapEventPlugin();
 
 export default class App extends Component {
-  render() {
-    return (
-      <MuiThemeProvider>
-        <div>
-          <SearchBar />
-          <Timer />
-          <Suggestions />
-          <Nearby />
-          <Departures />
-        </div>
-      </MuiThemeProvider>
-    );
-  }
+    render() {
+        return (
+            <MuiThemeProvider>
+                <div>
+                    <div className="card">
+                        <SearchBar />
+                        <Timer />
+                    </div>
+                    <div className="card">
+                        <Suggestions className="card"/>
+                    </div>
+                    <div className="card">
+                        <Nearby className="card"/>
+                    </div>
+                    <div className="card">
+                        <Departures className="card"/>
+
+                    </div>
+                </div>
+            </MuiThemeProvider>
+        );
+    }
 }

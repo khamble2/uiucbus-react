@@ -13,3 +13,15 @@ a[type=button] {
     display: flex;
     align-items: center;
 }
+
+.card{
+    margin: 5px;
+}
+
+.container-fluid{
+    padding: 5px;
+}
+
+body {
+    background-color: #EEEEEE;
+}

@@ -52,7 +52,6 @@ class SearchBar extends Component {
                             <FontIcon className="material-icons">search</FontIcon>
                         </div>
                         <div className="col-xs-10">
-
                             <TextField
                                 hintText="Search Here"
                                 fullWidth={true}
