@@ -31,7 +31,7 @@ export default class Timer extends React.Component {
 
     render() {
         return (
-            <LinearProgress color="#d0f4d0" mode="determinate" value={this.state.countDown} />
+            <LinearProgress color="#BBDEFB" mode="determinate" value={this.state.countDown} />
         );
     }
 }
