@@ -27,3 +27,7 @@ body {
     background-color: #EEEEEE;
 }
 
+.list-item {
+    display: flex;
+    justify-content: space-between;
+}

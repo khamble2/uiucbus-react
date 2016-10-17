@@ -26,7 +26,7 @@ class DepartureItem extends Component {
             if (data.data.results[0]) {
                 let street = (data.data.results[0].address_components.filter((e) => e.types.indexOf('route') != -1)[0]['short_name'])
                 let city = (data.data.results[0].address_components.filter((e) => e.types.indexOf('locality') != -1)[0]['short_name'])
-                
+
                 stopPostition = `${street}, ${city}`;
             } else {
                 stopPostition = 'unavaliable';
@@ -37,18 +37,9 @@ class DepartureItem extends Component {
 
     renderPrimaryText() {
         return (
-            <div className="row">
-                <div className="col-xs-10">{this.props.bus.headsign}</div>
-                <div className="col-xs-2">{this.props.bus.expected_mins}mins</div>
-            </div>
-        );
-    }
-
-    renderSecondaryText() {
-        return (
-            <div className="row">
-                <div className="col-xs-10">{this.props.bus.headsign}</div>
-                <div className="col-xs-2">{this.props.bus.expected_mins}mins</div>
+            <div className="list-item">
+                <div>{this.props.bus.headsign}</div>
+                <div>{this.props.bus.expected_mins}mins</div>
             </div>
         );
     }

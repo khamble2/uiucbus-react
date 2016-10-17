@@ -41,9 +41,9 @@ class BusStop extends Component {
     }
 
     renderHeader() {
-        return <div className="row">
-            <div className="col-xs-10">{this.props.name}</div>
-            <div className="col-xs-2">{this.state.heading}</div>
+        return <div className="list-item">
+            <div >{this.props.name}</div>
+            <div >{this.state.heading}</div>
         </div>
     }
 
