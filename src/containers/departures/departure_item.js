@@ -24,7 +24,10 @@ class DepartureItem extends Component {
         request.then((data) => {
             let stopPostition;
             if (data.data.results[0]) {
-                stopPostition = data.data.results[0].formatted_address;
+                let street = (data.data.results[0].address_components.filter((e) => e.types.indexOf('route') != -1)[0]['short_name'])
+                let city = (data.data.results[0].address_components.filter((e) => e.types.indexOf('locality') != -1)[0]['short_name'])
+                
+                stopPostition = `${street}, ${city}`;
             } else {
                 stopPostition = 'unavaliable';
             }
@@ -53,7 +56,7 @@ class DepartureItem extends Component {
     render() {
         return (<ListItem
             primaryText={this.renderPrimaryText()}
-            secondaryText={`Current: ${this.state.stopPostition}`}/>);
+            secondaryText={this.state.stopPostition}/>);
     }
 
 }

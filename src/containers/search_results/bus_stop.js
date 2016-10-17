@@ -21,7 +21,7 @@ class BusStop extends Component {
                 if (data.data.departures.length !== 0) {
 
                     let nextDeparture = data.data.departures[0];
-                    message = `Next: ${nextDeparture.headsign} in ${nextDeparture.expected_mins} mins`;
+                    message = `${nextDeparture.headsign} in ${nextDeparture.expected_mins} mins`;
                 };
                 this.setState({message: message})
             })
