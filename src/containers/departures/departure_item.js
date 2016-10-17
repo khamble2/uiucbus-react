@@ -12,7 +12,7 @@ class DepartureItem extends Component {
         this.state = {
             message: 'Loading',
             heading: 'Loading',
-            stopPostition: null
+            stopPostition: 'Loading'
         }
 
         this.fetchLocation(`${this.props.bus.location.lat},${this.props.bus.location.lon}`)
