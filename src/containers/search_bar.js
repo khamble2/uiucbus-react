@@ -64,8 +64,8 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <Paper>
-                <div className="row vertical-center">
+            <div className="container-fluid">
+                <div className="vertical-center">
                     <FontIcon className="material-icons" onClick={this.search}>{this.getIcon()}</FontIcon>
                         <TextField
                             hintText="Search Here"
@@ -74,7 +74,7 @@ class SearchBar extends Component {
                             value={this.state.query} />
                     <FontIcon className="material-icons" onClick={this.clearInput}>clear</FontIcon>
                 </div>
-            </Paper>
+                </div>
         );
     }
 
