@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "postinstall": "webpack -p",
+    "build": "NODE_ENV=production webpack --progress ",
     "start": "node server.js"
   },
   "author": "",
