@@ -22,8 +22,14 @@ class Departures extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.activeStop && nextProps.activeStop.stopId != this.props.activeStop.stopId) {
-            fetchDepartures(this.props.activeStop.stopId)
+        let currentActiveStop = this.props.activeStop;
+        let nextActoveStop = nextProps.activeStop;
+
+        // First boot up or contain data and don't match
+        let toUpdate = (nextActoveStop && !currentActiveStop) || ((currentActiveStop && nextActoveStop) && (nextActoveStop.stopId != currentActiveStop.stopId));
+
+        if (toUpdate) {
+            fetchDepartures(nextActoveStop.stopId)
                 .payload
                 .then((data) => {
                     this.setState({departures: data.data.departures});
