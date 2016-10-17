@@ -52,7 +52,10 @@ export function fetchStop(stopId) {
 }
 
 
-export function setActiveStop(stopName, stopId) {
+export function setActiveStop(stopName = null, stopId = null) {
     let stop = {stopName, stopId};
+    if (!stopId || !stopName){
+        stop = null;
+    }
     return {type: SET_ACTIVE_STOP, payload:stop};
 }

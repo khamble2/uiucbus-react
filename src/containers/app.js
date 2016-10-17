@@ -30,7 +30,6 @@ class App extends Component {
                 <div>
                     <div className="card">
                         <SearchBar />
-                        <Timer />
                     </div>
 
                     {this.getBody()}

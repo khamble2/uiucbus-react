@@ -10,7 +10,8 @@ a[type=button] {
 }
 
 .vertical-center {
-    display: flex;
+    display: inline-flex;
+    width: 100%;
     align-items: center;
 }
 
@@ -25,3 +26,4 @@ a[type=button] {
 body {
     background-color: #EEEEEE;
 }
+

@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {fetchSuggestions} from '../actions/index';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchSuggestions, setActiveStop } from '../actions/index';
+
+import Paper from 'material-ui/Paper';
 
 import {
     Card,
@@ -27,55 +29,65 @@ class SearchBar extends Component {
         this.clearInput = this
             .clearInput
             .bind(this);
+       this.search = this
+            .search
+            .bind(this);
     }
 
     clearInput() {
-        this.setState({query: ""});
+        this.setState({ query: "" });
         this
             .props
             .fetchSuggestions("");
+
+        this.props.setActiveStop();
     }
 
     onInputChange(event) {
-        this.setState({query: event.target.value});
+        this.setState({ query: event.target.value });
         this
             .props
             .fetchSuggestions(event.target.value);
+
+        this.props.setActiveStop();
     }
+
+    getIcon(){
+        let value = this.props.activeStop ? "arrow_back" : "search"
+        return value;
+    }
+
+    search(){
+        this.props.setActiveStop();
+    }
+
 
     render() {
         return (
-            <Card >
-                <CardText>
-                    <div className="row vertical-center">
-                        <div className="col-xs-1">
-                            <FontIcon className="material-icons">search</FontIcon>
-                        </div>
-                        <div className="col-xs-10">
-                            <TextField
-                                hintText="Search Here"
-                                fullWidth={true}
-                                onChange={this.onInputChange}
-                                value={this.state.query}/>
-                        </div>
-                        <div className="col-xs-1">
-                            <FontIcon className="material-icons" onClick={this.clearInput}>clear</FontIcon>
-                        </div>
-                    </div>
-                </CardText>
-            </Card>
+            <Paper>
+                <div className="row vertical-center">
+                    <FontIcon className="material-icons" onClick={this.search}>{this.getIcon()}</FontIcon>
+                        <TextField
+                            hintText="Search Here"
+                            fullWidth={true}
+                            onChange={this.onInputChange}
+                            value={this.state.query} />
+                    <FontIcon className="material-icons" onClick={this.clearInput}>clear</FontIcon>
+                </div>
+            </Paper>
         );
     }
 
 }
 
-function mapStateToProps({suggestions}) {
-    return {suggestions};
+function mapStateToProps(state) {
+    return { activeStop:state.activeStop };
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        fetchSuggestions: fetchSuggestions
+        fetchSuggestions,
+        setActiveStop
     }, dispatch)
 }
 
