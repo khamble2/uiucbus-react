@@ -1,0 +1,19 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - "6"
+
+services:
+  - docker
+
+
+
+
+
+before_script:
+  - npm install 
+
+script: ./build.sh
+
