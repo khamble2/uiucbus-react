@@ -8,12 +8,9 @@ node_js:
 services:
   - docker
 
+script:
+- npm run build
+- docker build -t benjaminchiang/bus .
+- docker push benjaminchiang/bus
 
-
-
-
-before_script:
-  - npm install 
-
-script: ./build.sh
 
