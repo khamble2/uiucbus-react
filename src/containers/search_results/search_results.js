@@ -17,10 +17,10 @@ class SearchResults extends Component {
         return (
             <div>
                 <div className="card">
-                    <Suggestions className="card" />
+                    <Suggestions />
                 </div>
                 <div className="card">
-                    <Nearby className="card" />
+                    <Nearby />
                 </div>
             </div>
         );

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -12,7 +14,16 @@ import Departures from './departures/departures';
 
 injectTapEventPlugin();
 
-export default class App extends Component {
+class App extends Component {
+
+    getBody(){
+        if (!this.props.activeStop){
+            return (<SearchResults className = "card" />);
+        }else{
+            return (<Departures className = "card" />);
+        }
+    }
+
     render() {
         return (
             <MuiThemeProvider>
@@ -21,13 +32,18 @@ export default class App extends Component {
                         <SearchBar />
                         <Timer />
                     </div>
-                    <SearchResults />
-                    <div className="card">
-                        <Departures className="card"/>
-                    </div>
+
+                    {this.getBody()}
                     
                 </div>
             </MuiThemeProvider>
         );
     }
 }
+
+
+function mapStateToProps(state) {
+    return {activeStop: state.activeStop};
+}
+
+export default connect(mapStateToProps)(App);

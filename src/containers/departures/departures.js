@@ -60,14 +60,14 @@ class Departures extends Component {
 
     render() {
         if (!this.props.activeStop) {
-            return (
-                <Card></Card>
-            );
+            return null;
         }
         return (
+            <div className="card">
             <Card>
                 <CardTitle subtitle={this.props.activeStop.stopName}/> {this.renderContent()}
             </Card>
+            </div>
         );
 
     }
