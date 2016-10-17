@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import DepartureItem from './Departure_item';
+import DepartureItem from './departure_item';
 import {fetchDepartures} from '../../actions';
 
 import {
