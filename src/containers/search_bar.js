@@ -15,6 +15,7 @@ import {
 } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class SearchBar extends Component {
     }
 
     getIcon(){
-        let value = this.props.activeStop ? "arrow_back" : "search"
+        let value = this.props.activeStop ? "arrow_back" : "search";
         return value;
     }
 
@@ -66,7 +67,10 @@ class SearchBar extends Component {
         return (
             <div className="container-fluid">
                 <div className="vertical-center">
+                <IconButton>
                     <FontIcon className="material-icons" onClick={this.search}>{this.getIcon()}</FontIcon>
+                </IconButton>
+                        
                         <TextField
                             hintText="Search Here"
                             fullWidth={true}
