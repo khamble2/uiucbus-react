@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchNearby, fetchPosition} from '../../actions';
 import BusStop from './bus_stop';
+import {List, ListItem} from 'material-ui/List';
 
 import {
     Card,
@@ -40,9 +41,7 @@ class Nearby extends Component {
 
     renderEmpty() {
         return (
-            <CardText>
-                Sorry we can not fetch your current location.
-            </CardText>
+            <ListItem primaryText="Sorry, we can not fetch your current location." />
         );
     }
 

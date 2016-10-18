@@ -69,7 +69,7 @@ class SearchBar extends Component {
                 <div className="vertical-center">
                 <IconButton>
                     <FontIcon className="material-icons" onClick={this.search}>{this.getIcon()}</FontIcon>
-                </IconButton>
+                </IconButton> 
                         
                         <TextField
                             hintText="Search Here"

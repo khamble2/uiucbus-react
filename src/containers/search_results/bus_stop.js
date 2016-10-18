@@ -17,7 +17,7 @@ class BusStop extends Component {
         fetchDepartures(this.props.id)
             .payload
             .then((data) => {
-                let message = `No upcoming bus`;
+                let message = `No upcoming buses for next 30 minutes`;
                 if (data.data.departures.length !== 0) {
 
                     let nextDeparture = data.data.departures[0];

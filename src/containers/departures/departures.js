@@ -40,7 +40,7 @@ class Departures extends Component {
     }
 
     renderEmpty() {
-        return (<ListItem primaryText="Sorry there are no upcoming bus."/>);
+        return (<ListItem primaryText="Sorry, there are no upcoming buses."/>);
     }
 
     renderContent() {

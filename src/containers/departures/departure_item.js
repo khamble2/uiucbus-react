@@ -39,7 +39,7 @@ class DepartureItem extends Component {
         return (
             <div className="list-item">
                 <div>{this.props.bus.headsign}</div>
-                <div>{this.props.bus.expected_mins}mins</div>
+                <div>{this.props.bus.expected_mins} mins</div>
             </div>
         );
     }
