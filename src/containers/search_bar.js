@@ -76,7 +76,9 @@ class SearchBar extends Component {
                             fullWidth={true}
                             onChange={this.onInputChange}
                             value={this.state.query} />
-                    <FontIcon className="material-icons" onClick={this.clearInput}>clear</FontIcon>
+                    <IconButton>
+                        <FontIcon className="material-icons" onClick={this.clearInput}>clear</FontIcon>
+                    </IconButton>
                 </div>
                 </div>
         );
